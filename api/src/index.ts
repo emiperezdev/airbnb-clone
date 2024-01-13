@@ -3,8 +3,8 @@ import express from 'express';
 const app = express();
 app.use(express.json());
 
-app.get('/test', (req, res) => {
-  return res.send('test ok');
+app.get('/hi', (req, res) => {
+  return res.send('hi user');
 });
 
 const PORT = process.env.PORT || 3000;
