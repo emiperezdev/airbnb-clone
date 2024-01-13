@@ -2,6 +2,8 @@ import { Link } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
+import axios from "axios";
+import { axiosInstance } from "../api/api-client";
 
 const schema = z.object({
   name: z
@@ -21,12 +23,6 @@ const schema = z.object({
 
 type UserFormData = z.infer<typeof schema>;
 
-interface FormData {
-  name: string;
-  email: string;
-  password: string;
-}
-
 export const RegisterPage = () => {
   const {
     register,
@@ -40,7 +36,10 @@ export const RegisterPage = () => {
         <h1 className="text-4xl text-center mb-4">Login</h1>
         <form
           className="max-w-md mx-auto"
-          onSubmit={handleSubmit((data) => console.log(data))}
+          onSubmit={handleSubmit((data) => {
+            console.log(data);
+            axios.get(axiosInstance + '/hi');
+          })}
         >
           <input
             {...register("name")}
