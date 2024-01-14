@@ -10,8 +10,9 @@ app.use(
   })
 );
 
-app.get("/hi", (req, res) => {
-  return res.send("hi user");
+app.post("/register", (req, res) => {
+  const {name, email, password} = req.body;
+  res.send(`This is the data ${name} ${email} ${password}`);
 });
 
 const PORT = process.env.PORT || 3000;

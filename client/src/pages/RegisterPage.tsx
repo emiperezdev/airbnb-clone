@@ -3,24 +3,9 @@ import { useForm } from "react-hook-form";
 import { Link } from "react-router-dom";
 import { z } from "zod";
 import useAddUser from "../hooks/useAddUser";
+import userSchema from "../schemas/userSchema";
 
-const schema = z.object({
-  name: z
-    .string()
-    .min(3, "Name should be at least 3 characters")
-    .max(50, "Name should be maximum 50 characters"),
-  email: z
-    .string()
-    .min(13, "Email should be at least 13 characters")
-    .max(50, "Email should be maximum 50 characters")
-    .email(),
-  password: z
-    .string()
-    .min(5, "Password should be at least 5 characters")
-    .max(50, "Password should be maximum 50 characters"),
-});
-
-type UserFormData = z.infer<typeof schema>;
+type UserFormData = z.infer<typeof userSchema>;
 
 export const RegisterPage = () => {
   const {
@@ -28,7 +13,7 @@ export const RegisterPage = () => {
     handleSubmit,
     reset,
     formState: { errors },
-  } = useForm<UserFormData>({ resolver: zodResolver(schema) });
+  } = useForm<UserFormData>({ resolver: zodResolver(userSchema) });
 
   const addUser = useAddUser();
 
