@@ -1,9 +1,8 @@
-import { Link } from "react-router-dom";
-import { useForm } from "react-hook-form";
-import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
-import axios from "axios";
-import { axiosInstance } from "../api/api-client";
+import { useForm } from "react-hook-form";
+import { Link } from "react-router-dom";
+import { z } from "zod";
+import useAddUser from "../hooks/useAddUser";
 
 const schema = z.object({
   name: z
@@ -27,8 +26,11 @@ export const RegisterPage = () => {
   const {
     register,
     handleSubmit,
+    reset,
     formState: { errors },
   } = useForm<UserFormData>({ resolver: zodResolver(schema) });
+
+  const addUser = useAddUser();
 
   return (
     <div className="mt-4 grow flex items-center justify-around">
@@ -37,8 +39,8 @@ export const RegisterPage = () => {
         <form
           className="max-w-md mx-auto"
           onSubmit={handleSubmit((data) => {
-            console.log(data);
-            axios.get(axiosInstance + '/hi');
+            addUser.mutate(data);
+            reset();
           })}
         >
           <input
