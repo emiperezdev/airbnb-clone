@@ -1,7 +1,8 @@
 import mongoose from "mongoose";
+import config from 'config';
 
 export default function () {
-  const db = "mongodb://localhost/airbnb-copy";
+  const db: string = config.get('db');
   mongoose
     .connect(db)
     .then(() => console.log(`Connected to ${db}...`))
