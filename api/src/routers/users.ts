@@ -16,7 +16,7 @@ usersRouter.post('', validate(validateUser), async (req, res) => {
 
   await user.validate();
   await user.save();
-  res.send(_.pick(user, ['name', 'email']));
+  res.status(201).send(_.pick(user, ['name', 'email']));
 });
 
 export default usersRouter;

@@ -7,5 +7,5 @@ export default function (
   next: NextFunction
 ) {
   console.log(error.message, error);
-  res.send("SOMETHING FAILED :/");
+  res.status(500).send("SOMETHING FAILED :/");
 }

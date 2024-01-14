@@ -25,6 +25,7 @@ export const RegisterPage = () => {
           className="max-w-md mx-auto"
           onSubmit={handleSubmit((data) => {
             addUser.mutate(data);
+            alert('Registration successful. Now you can log in.');
             reset();
           })}
         >
