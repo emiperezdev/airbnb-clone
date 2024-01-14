@@ -4,6 +4,8 @@ const axiosInstance = axios.create({
   baseURL: "http://localhost:3000",
 });
 
+axiosInstance.defaults.withCredentials = true;
+
 class APIClient<T> {
   private endpoint: string;
 
@@ -12,10 +14,10 @@ class APIClient<T> {
   }
 
   post = (data: T) => {
-    return axiosInstance.post(this.endpoint, data).then(res => res.data);
-  }
+    return axiosInstance
+      .post(this.endpoint, data)
+      .then((res) => res.data);
+  };
 }
 
 export default APIClient;
-
-

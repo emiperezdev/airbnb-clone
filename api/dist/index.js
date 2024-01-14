@@ -7,6 +7,8 @@ require("express-async-errors");
 const express_1 = __importDefault(require("express"));
 const db_1 = __importDefault(require("./startup/db"));
 const routes_1 = __importDefault(require("./startup/routes"));
+const config_1 = __importDefault(require("./startup/config"));
+(0, config_1.default)();
 (0, db_1.default)();
 const app = (0, express_1.default)();
 (0, routes_1.default)(app);
