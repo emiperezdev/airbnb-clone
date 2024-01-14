@@ -3,9 +3,9 @@ import { useForm } from "react-hook-form";
 import { Link } from "react-router-dom";
 import { z } from "zod";
 import useAddUser from "../hooks/useAddUser";
-import userSchema from "../schemas/userSchema";
+import registerSchema from "../schemas/registerSchema";
 
-type UserFormData = z.infer<typeof userSchema>;
+type RegisterFormData = z.infer<typeof registerSchema>;
 
 export const RegisterPage = () => {
   const {
@@ -13,20 +13,24 @@ export const RegisterPage = () => {
     handleSubmit,
     reset,
     formState: { errors },
-  } = useForm<UserFormData>({ resolver: zodResolver(userSchema) });
+  } = useForm<RegisterFormData>({ resolver: zodResolver(registerSchema) });
 
   const addUser = useAddUser();
 
   return (
     <div className="mt-4 grow flex items-center justify-around">
       <div className="mb-64">
-        <h1 className="text-4xl text-center mb-4">Login</h1>
+        <h1 className="text-4xl text-center mb-4">Sign up</h1>
         <form
           className="max-w-md mx-auto"
           onSubmit={handleSubmit((data) => {
-            addUser.mutate(data);
-            alert('Registration successful. Now you can log in.');
-            reset();
+            try {
+              addUser.mutate(data);
+              alert("Registration successful. Now you can log in.");
+              reset();
+            } catch (e) {
+              alert("Registration failed. Please try again later.");
+            }
           })}
         >
           <input
