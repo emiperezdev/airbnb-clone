@@ -1,6 +1,7 @@
 import express from 'express';
 import cors from "cors";
 import usersRouter from '../routers/users';
+import error from '../middleware/error';
 
 export default function (app: express.Express) {
   app.use(express.json());
@@ -12,4 +13,6 @@ export default function (app: express.Express) {
   );
 
   app.use('/register', usersRouter);
+
+  app.use(error);
 }
