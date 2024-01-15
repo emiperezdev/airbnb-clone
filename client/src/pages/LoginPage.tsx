@@ -25,7 +25,7 @@ export const LoginPage = () => {
           className="max-w-md mx-auto"
           onSubmit={handleSubmit((data) => {
             try {
-              console.log(data);
+              console.log('Log in successful ;))).');
               login.mutate(data);
               reset();
             } catch (e) {

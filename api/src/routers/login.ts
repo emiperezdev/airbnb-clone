@@ -1,6 +1,7 @@
 import { Router } from "express";
 import { User } from "../models/User";
 import bcrypt from "bcrypt";
+import _ from 'lodash';
 
 const loginRouter = Router();
 
@@ -12,7 +13,7 @@ loginRouter.post("", async (req, res) => {
   if (!validPassword) return res.status(400).send("Invalid password");
 
   res.cookie('token', user.generateAuthToken());
-  res.send("Log in successful");
+  res.send(user);
 });
 
 export default loginRouter;
