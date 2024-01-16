@@ -5,6 +5,7 @@ import error from '../middleware/error';
 import loginRouter from '../routers/login';
 import profileRouter from '../routers/profile';
 import cookieParser from 'cookie-parser';
+import logoutRouter from '../routers/logout';
 
 export default function (app: express.Express) {
   app.use(express.json());
@@ -19,6 +20,7 @@ export default function (app: express.Express) {
   app.use('/register', usersRouter);
   app.use('/login', loginRouter);
   app.use('/profile', profileRouter)
+  app.use('/logout', logoutRouter);
 
   app.use(error);
 }
