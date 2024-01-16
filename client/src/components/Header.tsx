@@ -1,6 +1,9 @@
 import { Link } from 'react-router-dom'
+import useUserState from '../states/useUserState'
 
 export const Header = () => {
+  const user = useUserState(s => s.user);
+
   return (
     <header className="flex justify-between">
         <Link to={'/'} className="flex items-center">
@@ -74,6 +77,7 @@ export const Header = () => {
               />
             </svg>
           </div>
+          { user && <div>{user.name}</div>}
         </Link>
       </header>
   )

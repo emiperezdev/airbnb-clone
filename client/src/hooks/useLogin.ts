@@ -1,21 +1,21 @@
-import { useMutation } from "@tanstack/react-query"
-import loginService from "../services/login-service"
-import { useNavigate } from "react-router-dom"
-import { User } from "../services/users-service";
+import { useMutation } from "@tanstack/react-query";
+import { useNavigate } from "react-router-dom";
+import loginService from "../services/login-service";
 import useUserState from "../states/useUserState";
+import { User } from "../services/users-service";
 
 const useLogin = () => {
   const navigate = useNavigate();
-  const setUser = useUserState(s => s.setUser);
+  const setUser = useUserState((s) => s.setUser);
 
   return useMutation({
     mutationFn: loginService.post,
 
-    onSuccess: (registeredUser: User) => {
-      setUser(registeredUser);
-      navigate('/');
-    }
-  })
-}
+    onSuccess: (user: User) => {
+      setUser(user);
+      navigate("/");
+    },
+  });
+};
 
 export default useLogin;

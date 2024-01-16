@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const axiosInstance = axios.create({
+export const axiosInstance = axios.create({
   baseURL: "http://localhost:3000",
 });
 
@@ -11,6 +11,10 @@ class APIClient<T> {
 
   constructor(endpoint: string) {
     this.endpoint = endpoint;
+  }
+
+  get = () => {
+    return axiosInstance.get<T>(this.endpoint).then(res => res.data);
   }
 
   post = (data: T) => {
