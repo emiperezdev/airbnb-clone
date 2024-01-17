@@ -17,9 +17,8 @@ const router = createBrowserRouter([
       {
         element: <PrivateRoutes />,
         children: [
-          { path: "account", element: <AccountPage /> },
-          { path: "account/bookings", element: <AccountPage /> },
-          { path: "account/places", element: <AccountPage /> },
+          { path: "account/:subpage?", element: <AccountPage /> },
+          { path: "account/:subpage/:action", element: <AccountPage />},
         ],
       },
     ],

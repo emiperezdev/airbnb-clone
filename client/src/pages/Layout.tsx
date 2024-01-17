@@ -10,7 +10,7 @@ export const Layout = () => {
   const setUser = useUserState((s) => s.setUser);
 
   useEffect(() => {
-    if (!user) {
+    if (!user.name) {
       axiosInstance.get<User>("/profile").then((res) => setUser(res.data));
     }
   }, []);

@@ -3,12 +3,12 @@ import { User } from "../services/users-service";
 import { mountStoreDevtool } from "simple-zustand-devtools";
 
 interface UserStateAction {
-  user: User | null;
+  user: User;
   setUser: (userInfo?: User) => void;
 }
 
 const useUserState = create<UserStateAction>((set) => ({
-  user: null,
+  user: {} as User,
   setUser: (userInfo) => set(() => ({ user: userInfo })),
 }));
 
